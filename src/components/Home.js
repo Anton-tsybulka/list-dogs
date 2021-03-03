@@ -1,29 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Carousel } from 'antd';
-
-const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllBreeds } from '../redux/actions/allBreedsActions';
 
 const Home = () => {
+    const allBreeds = useSelector((state) => state.breeds.data)
+    const dispatch = useDispatch();
+    console.log(allBreeds);
+
+    useEffect(() => {
+        dispatch(getAllBreeds());
+    }, [dispatch]);
+
+    const imagesForCarousel = allBreeds.map((item, id) => {
+        return (
+            <div key={id}>
+                <img src={item} alt='dog' style={{margin: 'auto', height: '400px'}}/>
+            </div>
+        )
+    });
+
     return (
         <Carousel autoplay>
-            <div>
-            <h3 style={contentStyle}>1</h3>
-            </div>
-            <div>
-            <h3 style={contentStyle}>2</h3>
-            </div>
-            <div>
-            <h3 style={contentStyle}>3</h3>
-            </div>
-            <div>
-            <h3 style={contentStyle}>4</h3>
-            </div>
+            {imagesForCarousel}
         </Carousel>
     );
 };

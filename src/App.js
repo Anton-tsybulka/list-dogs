@@ -1,10 +1,9 @@
 import React from 'react';
-
 import 'antd/dist/antd.css';
 import { Layout } from 'antd';
 import { HeaderContent, Contents } from './components/index';
 
-const App = () => {
+const App = () => {  
   return (
     <Layout>
       <HeaderContent />
